@@ -1,0 +1,81 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+
+## REACT
+# dependencies
+/client/node_modules
+/client/.pnp
+/client/.pnp.js
+
+# testing
+/client/coverage
+
+# production
+/client/build
+
+# misc
+/client/.DS_Store
+/client/.env.local
+/client/.env.development.local
+/client/.env.test.local
+/client/.env.production.local
+
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
+
+## POSTGRES
+/pgdata
+
+## ASPNET
+
+/web/*.com
+/web/*.class
+/web/*.dll
+/web/*.exe
+/web/*.pdb
+/web/*.dll.config
+/web/*.cache
+/web/*.suo
+/web/!/packages/*/lib/*.dll
+/web/!/packages/*/lib/*/*.dll
+/web/!*CommonReferences/*.dll
+/web/UpgradeLog.XML
+/web/_UpgradeReport_Files/
+/web/bin/
+/web/obj/
+/web/TestResults/
+/web/*.Publish.xml
+/web//_ReSharper.*
+/web/*.ReSharper.*
+/web/*.7z
+/web/*.dmg
+/web/*.gz
+/web/*.iso
+/web/*.jar
+/web/*.rar
+/web/*.tar
+/web/*.zip
+/web/*.log
+/web/*.sqlite
+/web/.DS_Store?
+/web/ehthumbs.db
+/web/Icon?
+/web/Thumbs.db
+/web/[Bb]in
+/web/[Oo]bj
+/web/[Tt]est[Rr]esults
+/web/*.suo
+/web/*.user
+/web/*.[Cc]ache
+/web/*[Rr]esharper*
+/web/packages
+/web/NuGet.exe
+/web/_[Ss]cripts
+/web/*.exe
+/web/*.dll
+/web/*.nupkg
+/web/*.ncrunchsolution
+/web/*.dot[Cc]over
+/web/.vs
+/web/src/obj/Debug

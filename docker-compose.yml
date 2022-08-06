@@ -1,0 +1,28 @@
+version: latest
+
+services:
+  postgres:
+    image: postgres:13.7-alpine3.16
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - .:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  
+  web:
+    build: web/src/
+    ports:
+      - 8080:80
+    depends_on:
+      - postgres
+
+  client:
+    build: client/
+    ports:
+      - 3000:3000
+    depends_on:
+      - web
