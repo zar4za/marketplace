@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
 {
@@ -7,6 +6,7 @@ namespace Web.Controllers
     [ApiController]
     public class SampleController : ControllerBase
     {
+        [HttpGet]
         public string Get()
         {
             return "Hello, wolrd!";
