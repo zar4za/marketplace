@@ -1,40 +1,38 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+using Web.Services;
 
 namespace Web.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class AuthController : Controller
+    public class AuthController : ControllerBase
     {
-        [HttpGet("get")]
-        public async Task<IActionResult> Get()
+        private readonly UserService _userService;
+
+        public AuthController(UserService userService)
         {
-            var claims = new List<Claim>
+            _userService = userService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateToken(string steamid)
+        {
+            var token = _userService.GetUserToken(steamid);
+
+            var payload = new
             {
-                new Claim("steamid", "123")
+                token
             };
 
-
-            var jwt = new JwtSecurityToken(
-                    claims: claims,
-                    audience: "localhost",
-                    expires: DateTimeOffset.UtcNow.AddMinutes(240).UtcDateTime,
-                    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes("supersecretpassword")), SecurityAlgorithms.HmacSha256));
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            return Ok(encodedJwt);
+            return Ok(payload);
         }
 
         [Authorize]
         [HttpGet("check")]
         public async Task<IActionResult> Check()
         {
-            return Ok(User.Claims.FirstOrDefault(x => x.Type == "steamid").Value);
+            return Ok(User.Identity.Name);
         }
     }
 }
