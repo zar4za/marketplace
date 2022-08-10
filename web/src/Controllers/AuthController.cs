@@ -34,7 +34,7 @@ namespace Web.Controllers
         [HttpGet("check")]
         public async Task<IActionResult> Check()
         {
-            return Ok(new { message = "success" });
+            return Ok(User.Claims.FirstOrDefault(x => x.Type == "steamid").Value);
         }
     }
 }
