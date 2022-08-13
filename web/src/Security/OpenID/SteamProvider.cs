@@ -1,4 +1,4 @@
-﻿namespace Grecatech.Security.OpenID
+﻿namespace Web.Security.OpenID
 {
     public class SteamProvider
     {

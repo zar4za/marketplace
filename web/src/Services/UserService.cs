@@ -1,9 +1,9 @@
-﻿using Grecatech.Security.OpenID;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Text.RegularExpressions;
+using Web.Security.OpenID;
 
 namespace Web.Services
 {

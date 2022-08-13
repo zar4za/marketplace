@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Grecatech.Security.OpenID
+﻿namespace Web.Security.OpenID
 {
     public class OpenIdRequestBuilder
     {
         private string _provider;
 
-        private Dictionary<string, string> _openIdMessage = new();
+        private readonly Dictionary<string, string> _openIdMessage = new();
 
         public enum Spec
         {
