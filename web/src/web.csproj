@@ -16,4 +16,8 @@
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Grecatech\Grecatech.csproj" />
+  </ItemGroup>
 </Project>

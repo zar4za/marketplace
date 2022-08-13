@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Services;
+using Grecatech.Security.OpenID;
 
 namespace Web.Controllers
 {
@@ -15,24 +16,27 @@ namespace Web.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> CreateToken(string steamid)
+        [HttpGet("openid-request")]
+        public IActionResult RequestOpenId(string verifyLink)
         {
-            var token = _userService.GetUserToken(steamid);
-
+            var link = _userService.GetRedirectLink(verifyLink);
             var payload = new
             {
-                token
+                link
             };
-
             return Ok(payload);
         }
 
-        [Authorize]
-        [HttpGet("check")]
-        public async Task<IActionResult> Check()
+        [HttpPost("openid-verify")]
+        public async Task<IActionResult> VerifyOpenId([FromBody] string query)
         {
-            return Ok(User.Identity.Name);
+            var steamid = await _userService.VerifyOpenId(query);
+
+            if (steamid == null) return Unauthorized();
+
+            var jwt = _userService.GetUserToken(steamid);
+
+            return Ok(new { jwt });
         }
     }
 }
