@@ -1,8 +1,8 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Grecatech.Security.OpenID;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Grecatech.Security.OpenID;
 using System.Text.RegularExpressions;
 
 namespace Web.Services
@@ -11,7 +11,7 @@ namespace Web.Services
     {
         private readonly SigningCredentials _signingCredentials;
         private readonly string _audience;
-        private SteamProvider _steamProvider;
+        private readonly SteamProvider _steamProvider;
 
         private static DateTime ExpirationTime => DateTimeOffset.UtcNow.AddMinutes(240).UtcDateTime;
 
@@ -28,7 +28,7 @@ namespace Web.Services
         public string GetRedirectLink(string verifyLink)
         {
             return OpenIdRequestBuilder.Create()
-                .WithProvider("https://steamcommunity.com/openid")
+                .WithProvider("https://steamcommunity.com/openid/login")
                 .WithSpec(OpenIdRequestBuilder.Spec.OpenId20)
                 .WithMode(OpenIdRequestBuilder.Mode.CheckIdSetup)
                 .WithIdentifierSelect()
