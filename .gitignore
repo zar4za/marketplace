@@ -131,3 +131,5 @@
 /web/Grecatech/*.dot[Cc]over
 /web/Grecatech/.vs
 /web/Grecatech/obj
+
+/.vs

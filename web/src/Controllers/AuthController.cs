@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Services;
-using Grecatech.Security.OpenID;
 
 namespace Web.Controllers
 {
